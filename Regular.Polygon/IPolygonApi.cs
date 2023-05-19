@@ -1,4 +1,6 @@
-﻿namespace Regular.Polygon;
+﻿using System.Text.Json.Serialization;
+
+namespace Regular.Polygon;
 
 /// <summary>
 /// An interface that provides methods for calling the polygon.io APIs
@@ -11,5 +13,9 @@ public partial interface IPolygonApi
 	public static JsonSerializerOptions DefaultSerializerOptions { get; } = new()
 	{
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+		Converters =
+		{
+			new JsonStringEnumConverter(),
+		},
 	};
 }

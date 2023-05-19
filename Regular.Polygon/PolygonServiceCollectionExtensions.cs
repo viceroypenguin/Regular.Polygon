@@ -27,6 +27,7 @@ public static class PolygonServiceCollectionExtensions
 			.AddRefitClient<IPolygonApi>(settings: new()
 			{
 				ContentSerializer = new SystemTextJsonContentSerializer(IPolygonApi.DefaultSerializerOptions),
+				UrlParameterFormatter = new UrlParameterFormatter(),
 			})
 			.ConfigureHttpClient(c => c.BaseAddress = new Uri("https://api.polygon.io/"))
 			.ConfigurePrimaryHttpMessageHandler(() =>
