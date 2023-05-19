@@ -60,10 +60,16 @@ public record TickerDetail(
 	public string? HomepageUrl { get; init; }
 
 	/// <summary>
-	/// The information is accurate up to this time.
+	/// The date that the symbol was first publicly listed.
 	/// </summary>
-	[JsonPropertyName("last_updated_utc")]
-	public DateTimeOffset? LastUpdated { get; init; }
+	[JsonPropertyName("list_date")]
+	public DateOnly? ListDate { get; init; }
+
+	/// <summary>
+	/// The last date that the asset was traded.
+	/// </summary>
+	[JsonPropertyName("delisted_utc")]
+	public DateTimeOffset? Delisted { get; init; }
 
 	/// <summary>
 	/// The most recent close price of the ticker multiplied by weighted outstanding shares.
