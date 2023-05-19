@@ -5,17 +5,14 @@ root = true
 [*]
 indent_style = tab
 insert_final_newline = true
+indent_size = 4
+tab_width = 4
+charset = utf-8-bom
 
 # Build scripts
 [*.{yml,yaml}]
 indent_style = spaces
 indent_size = 2
-
-# Code files
-[*.{cs,csx,vb,vbx}]
-indent_size = 4
-tab_width = 4
-charset = utf-8-bom
 
 # XML project files
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj,props,targets,ruleset,config,nuspec,resx,vsixmanifest,vsct}]
@@ -230,6 +227,8 @@ dotnet_diagnostic.CS1591.severity = error               # CS1591: Missing XML co
 dotnet_diagnostic.CS1712.severity = error               # CS1712: Type parameter has no matching typeparam tag in the XML comment (but other type parameters do)
 
 # Disable library unnecessary warnings
-dotnet_diagnostic.CA1812.severity = none                # CA1812: Avoid uninstantiated internal classes
+dotnet_diagnostic.CA1034.severity = none				# CA1034: Nested types should not be visible
 dotnet_diagnostic.CA1054.severity = none				# CA1054: URI-like parameters should not be strings
 dotnet_diagnostic.CA1056.severity = none				# CA1056: URI-like properties should not be strings
+dotnet_diagnostic.CA1716.severity = none				# CA1716: Identifiers should not match keywords
+dotnet_diagnostic.CA1812.severity = none                # CA1812: Avoid uninstantiated internal classes

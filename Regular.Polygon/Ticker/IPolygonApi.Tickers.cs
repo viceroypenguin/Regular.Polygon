@@ -19,4 +19,27 @@ public partial interface IPolygonApi
 	/// <returns>A list of tickers matching the query.</returns>
 	[Get("/v3/reference/tickers")]
 	Task<PolygonResponse<IReadOnlyList<TickerSearchResult>>> SearchTickers([Query] TickerSearchRequest? request = null);
+
+	/// <summary>
+	/// Get a single ticker supported by Polygon.io. This response will have detailed information about the ticker and the company behind it.
+	/// </summary>
+	/// <param name="ticker">The ticker symbol of the asset.</param>
+	/// <param name="date">
+	/// <para>
+	/// Specify a point in time to get information about the ticker available on that date. When retrieving information
+	/// from SEC filings, we compare this date with the period of report date on the SEC filing.
+	/// </para>
+	/// <para>
+	/// For example, consider an SEC filing submitted by AAPL on 2019-07-31, with a period of report date ending on
+	/// 2019-06-29. That means that the filing was submitted on 2019-07-31, but the filing was created based on
+	/// information from 2019-06-29. If you were to query for AAPL details on 2019-06-29, the ticker details would
+	/// include information from the SEC filing.
+	/// </para>
+	/// <para>
+	/// Defaults to the most recent available date.
+	/// </para>
+	/// </param>
+	/// <returns>Detailed information on a Ticker</returns>
+	[Get("/v3/reference/tickers/{ticker}")]
+	Task<PolygonResponse<TickerDetail>> GetTickerDetails([Query] string ticker, [Query] DateOnly? date = null);
 }
