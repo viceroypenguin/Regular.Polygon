@@ -1,4 +1,4 @@
-name: Release
+﻿name: Release
 
 on: 
   workflow_dispatch:
@@ -30,7 +30,7 @@ jobs:
       run: dotnet build -c Release --no-restore
 
     - name: Package 
-      run: dotnet pack -c Release --no-build --property:PackageOutputPath=../../nupkgs
+      run: dotnet pack -c Release --no-build --property:PackageOutputPath=../nupkgs
     - name: Push to Nuget
       run: dotnet nuget push "./nupkgs/*.nupkg" --source "https://api.nuget.org/v3/index.json" --api-key ${{ secrets.NUGETPUBLISHKEY }}
 
