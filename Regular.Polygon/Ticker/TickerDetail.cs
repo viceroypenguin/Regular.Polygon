@@ -66,12 +66,6 @@ public record TickerDetail(
 	public DateOnly? ListDate { get; init; }
 
 	/// <summary>
-	/// The last date that the asset was traded.
-	/// </summary>
-	[JsonPropertyName("delisted_utc")]
-	public DateTimeOffset? Delisted { get; init; }
-
-	/// <summary>
 	/// The most recent close price of the ticker multiplied by weighted outstanding shares.
 	/// </summary>
 	[JsonPropertyName("market_cap")]
