@@ -227,3 +227,6 @@ dotnet_diagnostic.CS4014.severity = error               # CS4014: Because this c
 # Documentation
 dotnet_diagnostic.CS1573.severity = error               # CS1573: Missing XML comment for parameter
 dotnet_diagnostic.CS1591.severity = error               # CS1591: Missing XML comment for publicly visible type or member
+
+# Disable library unnecessary warning
+dotnet_diagnostic.CA1812.severity = none                # CA1812: Avoid uninstantiated internal classes

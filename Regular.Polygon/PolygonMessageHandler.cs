@@ -1,0 +1,29 @@
+﻿using System.Web;
+
+namespace Regular.Polygon;
+
+internal sealed class PolygonMessageHandler : DelegatingHandler
+{
+	private readonly PolygonOptions _options;
+
+	public PolygonMessageHandler(IOptions<PolygonOptions> options)
+	{
+		_options = options.Value;
+	}
+
+	protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+	{
+		var uriBuilder = new UriBuilder(request.RequestUri!);
+		var paramValues = HttpUtility.ParseQueryString(uriBuilder.Query);
+
+		if (string.IsNullOrWhiteSpace(paramValues.Get("apiKey")))
+		{
+			paramValues.Add("apiKey", (string?)_options.ApiKey);
+
+			uriBuilder.Query = paramValues.ToString();
+			request.RequestUri = uriBuilder.Uri;
+		}
+
+		return base.SendAsync(request, cancellationToken);
+	}
+}
