@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F440528D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Regular.Polygon", "Regular.Polygon\Regular.Polygon.csproj", "{FC1BE7CD-CB0B-4E19-9CA5-22B7F496B83B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Regular.Polygon.Tests", "Regular.Polygon.Tests\Regular.Polygon.Tests.csproj", "{A2186AA5-06D2-4B86-83D3-DCC31B9E5997}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,12 +33,17 @@ Global
 		{FC1BE7CD-CB0B-4E19-9CA5-22B7F496B83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC1BE7CD-CB0B-4E19-9CA5-22B7F496B83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC1BE7CD-CB0B-4E19-9CA5-22B7F496B83B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2186AA5-06D2-4B86-83D3-DCC31B9E5997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2186AA5-06D2-4B86-83D3-DCC31B9E5997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2186AA5-06D2-4B86-83D3-DCC31B9E5997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2186AA5-06D2-4B86-83D3-DCC31B9E5997}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FC1BE7CD-CB0B-4E19-9CA5-22B7F496B83B} = {C2C38B9F-D4DD-4598-93FC-9580D63684C5}
+		{A2186AA5-06D2-4B86-83D3-DCC31B9E5997} = {F440528D-75EE-4A28-8DBC-004F6F162C52}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DFDE841E-0131-4839-BF13-AEBE115C93CA}
