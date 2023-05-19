@@ -31,6 +31,8 @@ jobs:
       run: dotnet build -c Release --no-restore
     - name: Test
       run: dotnet test -c Release --no-build --logger GitHubActions
+      env:
+        APIKEY: ${{ secrets.APIKEY }}
 
     - name: Upload coverage reports to Codecov with GitHub Action
       uses: codecov/codecov-action@v3
