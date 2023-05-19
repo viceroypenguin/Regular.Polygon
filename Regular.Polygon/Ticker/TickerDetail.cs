@@ -60,18 +60,6 @@ public record TickerDetail(
 	public string? HomepageUrl { get; init; }
 
 	/// <summary>
-	/// The date that the symbol was first publicly listed.
-	/// </summary>
-	[JsonPropertyName("list_date")]
-	public DateOnly? ListDate { get; init; }
-
-	/// <summary>
-	/// The last date that the asset was traded.
-	/// </summary>
-	[JsonPropertyName("delisted_utc")]
-	public DateTimeOffset? Delisted { get; init; }
-
-	/// <summary>
 	/// The information is accurate up to this time.
 	/// </summary>
 	[JsonPropertyName("last_updated_utc")]

@@ -45,6 +45,14 @@ public class TickerTests : IClassFixture<PolygonFixture>
 	}
 
 	[Fact]
+	public async Task SearchDelistedTickers()
+	{
+		// all we're looking for is successful api query
+		var tickers = await _fixture.Client.SearchTickers(new() { Ticker = "TA", Active = false, });
+		Guard.IsGreaterThan(tickers.Count ?? 0, 0);
+	}
+
+	[Fact]
 	public async Task GetTickerDetails()
 	{
 		// all we're looking for is successful api query

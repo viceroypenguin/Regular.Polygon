@@ -1,10 +1,12 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 
 namespace Regular.Polygon;
 
 /// <summary>
 /// A formatter that will print dates in ISO format
 /// </summary>
+[ExcludeFromCodeCoverage]
 public sealed class UrlParameterFormatter : DefaultUrlParameterFormatter
 {
 	/// <inheritdoc />
