@@ -1,5 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+	<PropertyGroup Label="NuGet">
+		<PackageId>Regular.Polygon</PackageId>
+		<Title>Regular.Polygon</Title>
+		<Description>A client api for polygon.io stock and options information service.</Description>
+
+		<Authors>viceroypenguin</Authors>
+		<PackageTags>polygon polygon.io stocks options financial</PackageTags>
+
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<RepositoryUrl>https://github.com/viceroypenguin/Regular.Polygon</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+		<Copyright>Copyright © 2023 Turning Code, LLC</Copyright>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\readme.md" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<Using Include="Microsoft.Extensions.Configuration" />
 		<Using Include="Microsoft.Extensions.Options" />
