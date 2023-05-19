@@ -59,4 +59,12 @@ public class TickerTests : IClassFixture<PolygonFixture>
 		var details = await _fixture.Client.GetTickerDetails(ticker: "MSFT");
 		Assert.Equal("MSFT", details.Results!.Ticker);
 	}
+
+	[Fact]
+	public async Task GetDelistedTickerDetails()
+	{
+		// all we're looking for is successful api query
+		var details = await _fixture.Client.GetTickerDetails(ticker: "TA", date: new DateOnly(2023, 05, 01));
+		Assert.Equal("TA", details.Results!.Ticker);
+	}
 }
