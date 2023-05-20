@@ -23,7 +23,8 @@ public partial interface IPolygonApi
 
 	private static async Task<IReadOnlyList<T>> GetFullList<T>(
 		Task<PolygonResponse<IReadOnlyList<T>>> responseTask,
-		Func<string, Task<PolygonResponse<IReadOnlyList<T>>>> nextUrlFunc)
+		Func<string, CancellationToken, Task<PolygonResponse<IReadOnlyList<T>>>> nextUrlFunc,
+		CancellationToken cancellationToken)
 	{
 		var response = await responseTask.ConfigureAwait(false);
 		if (string.IsNullOrWhiteSpace(response.NextUrl))
@@ -39,7 +40,7 @@ public partial interface IPolygonApi
 			var cursor = query.Get("cursor");
 			Guard.IsNotNullOrWhiteSpace(cursor);
 
-			response = await nextUrlFunc(cursor).ConfigureAwait(false);
+			response = await nextUrlFunc(cursor, cancellationToken).ConfigureAwait(false);
 		}
 
 		return list.ToList();
