@@ -27,7 +27,7 @@ public partial interface IPolygonApi
 	{
 		var response = await responseTask.ConfigureAwait(false);
 		if (string.IsNullOrWhiteSpace(response.NextUrl))
-			return response.Results ?? Array.Empty<T>();
+			return response.Results!;
 
 		var list = Enumerable.Empty<T>();
 		while (!string.IsNullOrWhiteSpace(response.NextUrl))
