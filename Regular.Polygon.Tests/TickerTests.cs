@@ -41,8 +41,8 @@ public class TickerTests : IClassFixture<PolygonFixture>
 	public async Task SearchTickers()
 	{
 		// all we're looking for is successful api query
-		var tickers = await _fixture.Client.SearchTickers(new() { Ticker = "MSFT", });
-		Guard.IsGreaterThan(tickers.Count ?? 0, 0);
+		var tickers = await _fixture.Client.SearchTickersAll(new() { Ticker = "MSFT", });
+		Guard.IsGreaterThan(tickers.Count, 0);
 	}
 
 	[Fact]
