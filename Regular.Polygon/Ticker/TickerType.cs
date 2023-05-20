@@ -15,6 +15,7 @@ public enum AssetClass
 	[EnumMember(Value = "crypto")] Crypto,
 	[EnumMember(Value = "fx")] Fx,
 	[EnumMember(Value = "indices")] Indices,
+	[EnumMember(Value = "otc")] OverTheCounter,
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 }
 
