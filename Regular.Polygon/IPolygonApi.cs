@@ -1,4 +1,6 @@
 ﻿using System.Text.Json.Serialization;
+using CommunityToolkit.Diagnostics;
+using System.Web;
 
 namespace Regular.Polygon;
 
@@ -18,4 +20,28 @@ public partial interface IPolygonApi
 			new JsonStringEnumConverter(),
 		},
 	};
+
+	private static async Task<IReadOnlyList<T>> GetFullList<T>(
+		Task<PolygonResponse<IReadOnlyList<T>>> responseTask,
+		Func<string, Task<PolygonResponse<IReadOnlyList<T>>>> nextUrlFunc)
+	{
+		var response = await responseTask.ConfigureAwait(false);
+		if (string.IsNullOrWhiteSpace(response.NextUrl))
+			return response.Results!;
+
+		var list = Enumerable.Empty<T>();
+		while (!string.IsNullOrWhiteSpace(response.NextUrl))
+		{
+			list = list.Concat(response.Results!);
+
+			var nextUrl = response.NextUrl;
+			var query = HttpUtility.ParseQueryString(new Uri(nextUrl).Query);
+			var cursor = query.Get("cursor");
+			Guard.IsNotNullOrWhiteSpace(cursor);
+
+			response = await nextUrlFunc(cursor).ConfigureAwait(false);
+		}
+
+		return list.ToList();
+	}
 }

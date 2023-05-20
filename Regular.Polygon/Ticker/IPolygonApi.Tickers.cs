@@ -21,6 +21,22 @@ public partial interface IPolygonApi
 	Task<PolygonResponse<IReadOnlyList<TickerSearchResult>>> SearchTickers([Query] TickerSearchRequest? request = null);
 
 	/// <summary>
+	/// Retrieve a subsequent page for a <see cref="SearchTickers(TickerSearchRequest?)"/> response that had additional information.
+	/// </summary>
+	/// <param name="cursor">The cursor provided by polygon.io for the next page</param>
+	/// <returns>The next page of tickers matching the original query.</returns>
+	[Get("/v3/reference/tickers")]
+	Task<PolygonResponse<IReadOnlyList<TickerSearchResult>>> SearchTickersCursor([Query] string cursor);
+
+	/// <summary>
+	/// Query all ticker symbols which are supported by Polygon.io. This API currently includes Stocks/Equities, Indices, Forex, and Crypto.
+	/// </summary>
+	/// <param name="request">Request object to hold parameters for the Ticker Search api.</param>
+	/// <returns>A list of tickers matching the query.</returns>
+	public Task<IReadOnlyList<TickerSearchResult>> SearchTickersAll(TickerSearchRequest? request = null) =>
+		GetFullList(SearchTickers(request), SearchTickersCursor);
+
+	/// <summary>
 	/// Get a single ticker supported by Polygon.io. This response will have detailed information about the ticker and the company behind it.
 	/// </summary>
 	/// <param name="ticker">The ticker symbol of the asset.</param>
@@ -41,5 +57,5 @@ public partial interface IPolygonApi
 	/// </param>
 	/// <returns>Detailed information on a Ticker</returns>
 	[Get("/v3/reference/tickers/{ticker}")]
-	Task<PolygonResponse<TickerDetail>> GetTickerDetails([Query] string ticker, [Query] DateOnly? date = null);
+	Task<PolygonResponse<TickerDetail>> GetTickerDetails(string ticker, [Query] DateOnly? date = null);
 }

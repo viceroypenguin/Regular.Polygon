@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Diagnostics;
+using Regular.Polygon.Ticker;
 using Xunit;
 
 namespace Regular.Polygon.Tests;
@@ -40,8 +41,16 @@ public class TickerTests : IClassFixture<PolygonFixture>
 	public async Task SearchTickers()
 	{
 		// all we're looking for is successful api query
-		var tickers = await _fixture.Client.SearchTickers(new() { Ticker = "MSFT", });
-		Guard.IsGreaterThan(tickers.Count ?? 0, 0);
+		var tickers = await _fixture.Client.SearchTickersAll(new() { Ticker = "MSFT", });
+		Guard.IsGreaterThan(tickers.Count, 0);
+	}
+
+	[Fact]
+	public async Task SearchTickersAll()
+	{
+		// all we're looking for is successful api query
+		var tickers = await _fixture.Client.SearchTickersAll(new() { TickerType = "ETF", Market = AssetClass.Stocks, Limit = 1000, });
+		Guard.IsGreaterThan(tickers.Count, 0);
 	}
 
 	[Fact]
