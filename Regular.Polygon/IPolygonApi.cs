@@ -17,7 +17,7 @@ public partial interface IPolygonApi
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 		Converters =
 		{
-			new JsonStringEnumConverter(),
+			new EnumConverterFactory(),
 		},
 	};
 
