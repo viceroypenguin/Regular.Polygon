@@ -16,5 +16,5 @@ public class FinancialTests : IClassFixture<PolygonFixture>
 	[Fact]
 	public Task GetFinancials() =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetStockFinancials(new() { Ticker = "AAPL", });
+		_fixture.Client.GetStockFinancials(new() { Ticker = "AAPL", IncludeSources = true, });
 }
