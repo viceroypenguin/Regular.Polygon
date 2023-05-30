@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
@@ -7,6 +8,7 @@ using CommunityToolkit.Diagnostics;
 namespace Regular.Polygon;
 
 /// <inheritdoc/>
+[ExcludeFromCodeCoverage]
 public sealed class EnumConverterFactory : JsonConverterFactory
 {
 	/// <inheritdoc/>
