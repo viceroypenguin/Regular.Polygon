@@ -162,6 +162,7 @@ public record FinancialReportDataPoint(
 	/// cref="FinancialsRequest.IncludeSources"/> query parameter is <see langword="true"/> and if <see cref="Source"/>
 	/// is <see cref="FinancialReportDataPointSource.SourceDirectReport"/>.
 	/// </summary>
+	[JsonPropertyName("xpath")]
 	public string? XPath { get; set; }
 
 	/// <summary>
