@@ -16,4 +16,8 @@ public class DistributionTests : IClassFixture<PolygonFixture>
 		// all we're looking for is successful api query
 		_fixture.Client.GetStockSplits(new() { Ticker = "AAPL", });
 
+	[Fact]
+	public Task GetDividend() =>
+		// all we're looking for is successful api query
+		_fixture.Client.GetDividends(new() { Ticker = "AAPL", });
 }
