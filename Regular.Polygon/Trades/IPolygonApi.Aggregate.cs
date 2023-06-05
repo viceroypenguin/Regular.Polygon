@@ -99,4 +99,24 @@ public partial interface IPolygonApi
 		long to,
 		[Query] AggregateRequest? request = null,
 		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// Get the open, close and afterhours prices of a ticker on a certain date.
+	/// </summary>
+	/// <param name="ticker">The ticker symbol of the security.</param>
+	/// <param name="date">The date of the requested daily prices.</param>
+	/// <param name="adjusted">Whether or not the results are adjusted for splits. By default, results are adjusted. Set
+	/// this to <see langword="false"/> to get results that are NOT adjusted for splits.</param>
+	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
+	/// <returns>A list of the OHLC bars for the time windows requested.</returns>
+	/// <remarks>
+	/// Read more about how aggregate results are calculated in our article on <a
+	/// href="https://polygon.io/blog/aggs-api-updates/">Aggregate Data API Improvements</a>.
+	/// </remarks>
+	[Get("/v1/open-close/{ticker}/{date}")]
+	Task<DailyPrice> GetDailyPrice(
+		string ticker,
+		DateOnly date,
+		bool? adjusted = null,
+		CancellationToken cancellationToken = default);
 }

@@ -20,6 +20,13 @@ public class TradeTests : IClassFixture<PolygonFixture>
 			1,
 			Timespan.Day,
 			new DateOnly(1990, 1, 1),
-			DateOnly.FromDateTime(DateTime.Today),
+			new DateOnly(2023, 1, 1),
 			new() { Limit = 5000, });
+
+	[Fact]
+	public Task GetDailyPrice() =>
+		// all we're looking for is successful api query
+		_fixture.Client.GetDailyPrice(
+			"AAPL",
+			new DateOnly(2023, 1, 3));
 }
