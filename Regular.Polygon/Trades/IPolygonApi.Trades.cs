@@ -129,4 +129,17 @@ public partial interface IPolygonApi
 		string ticker,
 		bool? adjusted = null,
 		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// Get trades for a ticker symbol in a given time range.
+	/// </summary>
+	/// <param name="ticker">The ticker symbol of the security.</param>
+	/// <param name="request">Request object to hold additional parameters for the Trades api.</param>
+	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
+	/// <returns>A list of the trades that occurred during the given time range.</returns>
+	[Get("/v3/trades/{ticker}")]
+	Task<PolygonResponse<IReadOnlyList<Trade>>> GetTrades(
+		string ticker,
+		TradesRequest request,
+		CancellationToken cancellationToken = default);
 }

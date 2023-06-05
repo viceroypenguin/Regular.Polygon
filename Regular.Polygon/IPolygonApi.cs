@@ -18,7 +18,7 @@ public partial interface IPolygonApi
 		Converters =
 		{
 			new EnumConverterFactory(),
-			new UnixDateTimeOffsetConverter(),
+			new UnixMillisecondDateTimeOffsetConverter(),
 		},
 	};
 

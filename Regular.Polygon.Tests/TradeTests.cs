@@ -35,4 +35,15 @@ public class TradeTests : IClassFixture<PolygonFixture>
 		// all we're looking for is successful api query
 		_fixture.Client.GetPreviousDailyPrice(
 			"AAPL");
+
+	[Fact]
+	public Task GetTrades() =>
+		// all we're looking for is successful api query
+		_fixture.Client.GetTrades(
+			"AAPL",
+			new()
+			{
+				TimestampGreaterThan = new DateTimeOffset(2023, 1, 3, 0, 0, 0, TimeSpan.Zero),
+				TimestampLessThan = new DateTimeOffset(2023, 1, 4, 0, 0, 0, TimeSpan.Zero),
+			});
 }

@@ -88,7 +88,7 @@ public record AggregateResponse : PolygonResponse<IReadOnlyList<AggregateBar>>
 /// <param name="Close">The highest price for the symbol in the given time period.</param>
 /// <param name="Volume">The volume weighted average price.</param>
 public record AggregateBar(
-	[property: JsonPropertyName("t"), JsonConverter(typeof(UnixDateTimeOffsetConverter))]
+	[property: JsonPropertyName("t"), JsonConverter(typeof(UnixMillisecondDateTimeOffsetConverter))]
 	DateTimeOffset Timestamp,
 	[property: JsonPropertyName("o")]
 	decimal Open,
