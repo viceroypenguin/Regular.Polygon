@@ -108,15 +108,25 @@ public partial interface IPolygonApi
 	/// <param name="adjusted">Whether or not the results are adjusted for splits. By default, results are adjusted. Set
 	/// this to <see langword="false"/> to get results that are NOT adjusted for splits.</param>
 	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
-	/// <returns>A list of the OHLC bars for the time windows requested.</returns>
-	/// <remarks>
-	/// Read more about how aggregate results are calculated in our article on <a
-	/// href="https://polygon.io/blog/aggs-api-updates/">Aggregate Data API Improvements</a>.
-	/// </remarks>
+	/// <returns>The open, close and afterhours prices of a ticker on a certain date.</returns>
 	[Get("/v1/open-close/{ticker}/{date}")]
 	Task<DailyPrice> GetDailyPrice(
 		string ticker,
 		DateOnly date,
+		bool? adjusted = null,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// Get the open, close and afterhours prices of a ticker of the previous trading day.
+	/// </summary>
+	/// <param name="ticker">The ticker symbol of the security.</param>
+	/// <param name="adjusted">Whether or not the results are adjusted for splits. By default, results are adjusted. Set
+	/// this to <see langword="false"/> to get results that are NOT adjusted for splits.</param>
+	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
+	/// <returns>The open, close and afterhours prices of a ticker of the previous trading day.</returns>
+	[Get("/v2/aggs/ticker/{ticker}/prev")]
+	Task<PolygonResponse<IReadOnlyList<AggregateBar>>> GetPreviousDailyPrice(
+		string ticker,
 		bool? adjusted = null,
 		CancellationToken cancellationToken = default);
 }

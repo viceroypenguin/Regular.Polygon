@@ -29,4 +29,10 @@ public class TradeTests : IClassFixture<PolygonFixture>
 		_fixture.Client.GetDailyPrice(
 			"AAPL",
 			new DateOnly(2023, 1, 3));
+
+	[Fact]
+	public Task GetPreviousDailyPrice() =>
+		// all we're looking for is successful api query
+		_fixture.Client.GetPreviousDailyPrice(
+			"AAPL");
 }

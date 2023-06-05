@@ -102,7 +102,13 @@ public record AggregateBar(
 	decimal Volume)
 {
 	/// <summary>
-	/// The number of transactions int he aggregate window.
+	/// The exchange symbol that this item is traded under.
+	/// </summary>
+	[JsonPropertyName("T")]
+	public string? Ticker { get; set; }
+
+	/// <summary>
+	/// The number of transactions in the aggregate window.
 	/// </summary>
 	[JsonPropertyName("n")]
 	public int? TransactionCount { get; set; }
