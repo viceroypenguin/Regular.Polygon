@@ -12,8 +12,18 @@ public sealed class UrlParameterFormatter : DefaultUrlParameterFormatter
 	/// <inheritdoc />
 	public override string? Format(object? parameterValue, ICustomAttributeProvider attributeProvider, Type type)
 	{
-		if (parameterValue?.GetType() == typeof(DateOnly))
-			return FormattableString.Invariant($"{parameterValue:yyyy-MM-dd}");
+		if (parameterValue is DateOnly date)
+		{
+			return FormattableString.Invariant($"{date:yyyy-MM-dd}");
+		}
+
+		if (parameterValue is DateTimeOffset dto)
+		{
+			var ns = dto.ToUnixTimeMilliseconds() * 1_000_000;
+			ns += (dto.Ticks % 10_000L) * 100;
+			return FormattableString.Invariant($"{ns}");
+		}
+
 		return base.Format(parameterValue, attributeProvider, type);
 	}
 }
