@@ -142,4 +142,35 @@ public partial interface IPolygonApi
 		string ticker,
 		TradesRequest request,
 		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// Get trades for a ticker symbol in a given time range.
+	/// </summary>
+	/// <param name="ticker">The ticker symbol of the security.</param>
+	/// <param name="cursor">The cursor provided by polygon.io for the next page</param>
+	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
+	/// <returns>A list of the trades that occurred during the given time range.</returns>
+	[Get("/v3/trades/{ticker}")]
+	Task<PolygonResponse<IReadOnlyList<Trade>>> GetTradesCursor(
+		string ticker,
+		[Query] string cursor,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// Get trades for a ticker symbol in a given time range.
+	/// </summary>
+	/// <param name="ticker">The ticker symbol of the security.</param>
+	/// <param name="request">Request object to hold additional parameters for the Trades api.</param>
+	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
+	/// <returns>A list of the trades that occurred during the given time range.</returns>
+	Task<IReadOnlyList<Trade>> GetTradesAll(
+		string ticker,
+		TradesRequest request,
+		CancellationToken cancellationToken = default)
+	{
+		return GetFullList(
+			GetTrades(ticker, request, cancellationToken),
+			(c, ct) => GetTradesCursor(ticker, c, ct),
+			cancellationToken);
+	}
 }

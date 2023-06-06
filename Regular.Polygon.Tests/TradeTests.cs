@@ -61,11 +61,12 @@ public class TradeTests : IClassFixture<PolygonFixture>
 	[Fact]
 	public Task GetTrades() =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetTrades(
+		_fixture.Client.GetTradesAll(
 			"AAPL",
 			new()
 			{
-				TimestampGreaterThan = new DateTimeOffset(2023, 1, 3, 0, 0, 0, TimeSpan.Zero),
-				TimestampLessThan = new DateTimeOffset(2023, 1, 4, 0, 0, 0, TimeSpan.Zero),
+				TimestampGreaterThan = new DateTimeOffset(2023, 1, 3, 13, 30, 0, TimeSpan.Zero),
+				TimestampLessThan = new DateTimeOffset(2023, 1, 3, 14, 30, 0, TimeSpan.Zero),
+				Limit = 5_000,
 			});
 }
