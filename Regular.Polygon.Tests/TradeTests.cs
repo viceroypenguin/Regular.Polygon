@@ -53,6 +53,13 @@ public class TradeTests : IClassFixture<PolygonFixture>
 			new DateOnly(2023, 1, 3));
 
 	[Fact]
+	public Task GetDailyPriceOtc() =>
+		// all we're looking for is successful api query
+		_fixture.Client.GetDailyPrice(
+			"TCEHY",
+			new DateOnly(2023, 1, 3));
+
+	[Fact]
 	public Task GetPreviousDailyPrice() =>
 		// all we're looking for is successful api query
 		_fixture.Client.GetPreviousDailyPrice(
