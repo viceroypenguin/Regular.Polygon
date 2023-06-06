@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace Regular.Polygon.Trades;
 
@@ -71,6 +72,7 @@ public record Trade(
 	/// <summary>
 	/// The trade correction indicator.
 	/// </summary>
+	[ExcludeFromCodeCoverage] // hard to find one
 	public int? Correction { get; set; }
 
 	/// <summary>

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace Regular.Polygon.Trades;
@@ -75,6 +76,7 @@ public record AggregateResponse : PolygonResponse<IReadOnlyList<AggregateBar>>
 	/// <summary>
 	/// The total number of results for this request.
 	/// </summary>
+	[ExcludeFromCodeCoverage] // used by STJ to set Count, doesn't need to be covered
 	private int ResultsCount { set => Count = value; }
 }
 

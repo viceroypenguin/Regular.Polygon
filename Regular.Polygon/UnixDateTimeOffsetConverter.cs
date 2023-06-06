@@ -1,8 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace Regular.Polygon;
 
 /// <inheritdoc/>
+[ExcludeFromCodeCoverage]
 internal sealed class UnixMillisecondDateTimeOffsetConverter : JsonConverter<DateTimeOffset>
 {
 	/// <inheritdoc/>
@@ -17,6 +19,7 @@ internal sealed class UnixMillisecondDateTimeOffsetConverter : JsonConverter<Dat
 }
 
 /// <inheritdoc/>
+[ExcludeFromCodeCoverage]
 internal sealed class UnixNanosecondDateTimeOffsetConverter : JsonConverter<DateTimeOffset>
 {
 	private static DateTimeOffset FromUnixTimeNanoseconds(long nanoSeconds)
@@ -32,7 +35,14 @@ internal sealed class UnixNanosecondDateTimeOffsetConverter : JsonConverter<Date
 		reader.TokenType == JsonTokenType.String ? DateTimeOffset.Parse(reader.GetString()!, formatProvider: null) :
 		throw new InvalidOperationException("Unable to parse DateTimeOffset");
 
+	private static long ToUnixTimeNanoseconds(DateTimeOffset value)
+	{
+		var ns = value.ToUnixTimeMilliseconds() * 1_000_000;
+		ns += (value.Ticks % 10_000) * 100;
+		return ns;
+	}
+
 	/// <inheritdoc/>
 	public override void Write(Utf8JsonWriter writer, DateTimeOffset value, JsonSerializerOptions options) =>
-		writer.WriteNumberValue(value.ToUnixTimeMilliseconds());
+		writer.WriteNumberValue(ToUnixTimeNanoseconds(value));
 }

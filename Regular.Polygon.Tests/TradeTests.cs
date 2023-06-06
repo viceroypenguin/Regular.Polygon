@@ -13,7 +13,7 @@ public class TradeTests : IClassFixture<PolygonFixture>
 	}
 
 	[Fact]
-	public Task GetAggregates() =>
+	public Task GetAggregatesDate() =>
 		// all we're looking for is successful api query
 		_fixture.Client.GetAggregateBars(
 			"AAPL",
@@ -21,6 +21,28 @@ public class TradeTests : IClassFixture<PolygonFixture>
 			Timespan.Day,
 			new DateOnly(1990, 1, 1),
 			new DateOnly(2023, 1, 1),
+			new() { Limit = 5000, });
+
+	[Fact]
+	public Task GetAggregatesOtc() =>
+		// all we're looking for is successful api query
+		_fixture.Client.GetAggregateBars(
+			"TCEHY",
+			1,
+			Timespan.Day,
+			new DateOnly(1990, 1, 1),
+			new DateOnly(2023, 1, 1),
+			new() { Limit = 5000, });
+
+	[Fact]
+	public Task GetAggregatesDateTimeOffset() =>
+		// all we're looking for is successful api query
+		_fixture.Client.GetAggregateBars(
+			"AAPL",
+			1,
+			Timespan.Day,
+			new DateTimeOffset(1990, 1, 1, 0, 0, 0, TimeSpan.Zero),
+			new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero),
 			new() { Limit = 5000, });
 
 	[Fact]
