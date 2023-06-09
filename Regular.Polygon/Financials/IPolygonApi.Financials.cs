@@ -13,6 +13,5 @@ public partial interface IPolygonApi
 	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
 	/// <returns>A list of company SEC filings.</returns>
 	/// <remarks>This API is experimental</remarks>
-	[Get("/vX/reference/financials")]
-	Task<PolygonResponse<IReadOnlyList<FinancialsFiling>>> GetStockFinancials([Query] FinancialsRequest request, CancellationToken cancellationToken = default);
+	Task<PolygonResponse<IReadOnlyList<FinancialsFiling>>> GetStockFinancials(FinancialsRequest request, CancellationToken cancellationToken = default);
 }

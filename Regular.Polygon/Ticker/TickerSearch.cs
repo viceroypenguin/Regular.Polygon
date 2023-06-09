@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using Refit;
 
 namespace Regular.Polygon.Ticker;
 

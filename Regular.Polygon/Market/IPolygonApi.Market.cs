@@ -9,7 +9,6 @@ public partial interface IPolygonApi
 	/// </summary>
 	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
 	/// <returns>The current trading status of the exchanges and overall financial markets</returns>
-	[Get("/v1/marketstatus/now")]
 	Task<MarketStatus> GetMarketStatus(CancellationToken cancellationToken = default);
 
 	/// <summary>
@@ -17,6 +16,5 @@ public partial interface IPolygonApi
 	/// </summary>
 	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
 	/// <returns>A list of the upcoming market holidays</returns>
-	[Get("/v1/marketstatus/upcoming")]
 	Task<IReadOnlyList<MarketHoliday>> GetMarketHolidays(CancellationToken cancellationToken = default);
 }
