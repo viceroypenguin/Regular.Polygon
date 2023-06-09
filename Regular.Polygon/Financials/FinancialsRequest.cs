@@ -1,4 +1,6 @@
-﻿namespace Regular.Polygon.Financials;
+﻿using Refit;
+
+namespace Regular.Polygon.Financials;
 
 /// <summary>
 /// Request class to hold parameters for the Stock Financials API

@@ -1,6 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Web;
 using CommunityToolkit.Diagnostics;
-using System.Web;
 
 namespace Regular.Polygon;
 
@@ -21,6 +20,16 @@ public partial interface IPolygonApi
 			new UnixMillisecondDateTimeOffsetConverter(),
 		},
 	};
+}
+
+internal sealed partial class PolygonApi : IPolygonApi
+{
+	private readonly IPolygonApiRefit _refitApi;
+
+	public PolygonApi(IPolygonApiRefit refitApi)
+	{
+		_refitApi = refitApi;
+	}
 
 	private static async Task<IReadOnlyList<T>> GetFullList<T>(
 		Task<PolygonResponse<IReadOnlyList<T>>> responseTask,
@@ -46,4 +55,9 @@ public partial interface IPolygonApi
 
 		return list.ToList();
 	}
+}
+
+internal partial interface IPolygonApiRefit
+{
+
 }

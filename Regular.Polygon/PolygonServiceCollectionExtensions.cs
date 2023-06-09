@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
+using Refit;
 
 namespace Regular.Polygon;
 
@@ -24,7 +25,7 @@ public static class PolygonServiceCollectionExtensions
 		services.Configure<PolygonOptions>(o => o.ApiKey = apiKey);
 		services.AddTransient<PolygonMessageHandler>();
 		services
-			.AddRefitClient<IPolygonApi>(settings: new()
+			.AddRefitClient<IPolygonApiRefit>(settings: new()
 			{
 				ContentSerializer = new SystemTextJsonContentSerializer(IPolygonApi.DefaultSerializerOptions),
 				UrlParameterFormatter = new UrlParameterFormatter(),
@@ -33,6 +34,7 @@ public static class PolygonServiceCollectionExtensions
 			.ConfigurePrimaryHttpMessageHandler(() =>
 				new HttpClientHandler { AutomaticDecompression = System.Net.DecompressionMethods.All, })
 			.AddHttpMessageHandler<PolygonMessageHandler>();
+		services.AddSingleton<IPolygonApi, PolygonApi>();
 
 		return services;
 	}
