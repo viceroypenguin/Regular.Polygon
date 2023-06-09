@@ -11,24 +11,29 @@ namespace Regular.Polygon;
 /// <remarks>
 /// This class is designed to be short-lived and transient, as a unit-of-work class.
 /// </remarks>
-public sealed partial class PolygonApi
+public sealed partial class PolygonApi : IAsyncDisposable
 {
 	private readonly IPolygonApiRefit _refitApi;
 	private readonly string _apiKey;
+	private readonly PolygonDataStatus _dataStatus;
 
 	/// <summary>
 	/// Create a new <see cref="PolygonApi"/> with the specified API key.
 	/// </summary>
 	/// <param name="apiKey">The API key provided by Polygon.io for access to their APIs.</param>
+	/// <param name="dataStatus">A value indicating whether to query live data from the live or delayed Polygon websocket server.</param>
 	/// <remarks>
 	/// This constructor should only be used by short-lived console applications.
 	/// </remarks>
 	[SuppressMessage("Design", "CA2000:Dispose objects before losing scope", Justification = "HttpClient won't be disposed.")]
-	public PolygonApi(string apiKey)
+	public PolygonApi(
+		string apiKey,
+		PolygonDataStatus dataStatus = PolygonDataStatus.None)
 	{
 		Guard.IsNotNullOrWhiteSpace(apiKey);
 
 		_apiKey = apiKey;
+		_dataStatus = dataStatus;
 
 		_refitApi = RestService.For<IPolygonApiRefit>(
 			new HttpClient(
@@ -57,6 +62,7 @@ public sealed partial class PolygonApi
 		_refitApi = refitApi;
 
 		_apiKey = options.Value.ApiKey;
+		_dataStatus = options.Value.DataStatus;
 	}
 
 	private static async Task<IReadOnlyList<T>> GetFullList<T>(
@@ -82,6 +88,18 @@ public sealed partial class PolygonApi
 		}
 
 		return list.ToList();
+	}
+
+	/// <summary>
+	/// Release any polygon resources owned by this object.
+	/// </summary>
+	/// <returns>
+	/// A task that represents the asynchronous dispose operation.
+	/// </returns>
+	public async ValueTask DisposeAsync()
+	{
+		if (_stockSocketManager != null)
+			await _stockSocketManager.DisposeAsync().ConfigureAwait(false);
 	}
 
 	/// <summary>

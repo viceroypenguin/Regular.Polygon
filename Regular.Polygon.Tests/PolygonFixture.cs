@@ -10,6 +10,7 @@ public static class PolygonFixture
 
 	public static IReadOnlyList<object[]> Data { get; } = GetData();
 
+	[System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "Unit Testing")]
 	private static IReadOnlyList<object[]> GetData()
 	{
 		var configuration = new ConfigurationBuilder()
