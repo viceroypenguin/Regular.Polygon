@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup Label="NuGet">
 		<PackageId>Regular.Polygon</PackageId>
@@ -51,7 +51,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.0" />
+		<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.1" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
 		<PackageReference Include="MinVer" Version="4.3.0" PrivateAssets="All" />
 		<PackageReference Include="PolySharp" Version="1.13.2" PrivateAssets="All" />
