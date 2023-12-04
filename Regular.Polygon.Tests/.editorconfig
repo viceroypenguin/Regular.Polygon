@@ -1,4 +1,4 @@
-[*.cs]
+﻿[*.cs]
 
 # XML Documentation
 dotnet_diagnostic.CS1573.severity = none                # CS1573: Missing XML comment for parameter
@@ -9,5 +9,6 @@ dotnet_diagnostic.CS1712.severity = none                # CS1712: Type parameter
 dotnet_diagnostic.xUnit1008.severity = error			# xUnit1008: Test data attribute should only be used on a Theory
 dotnet_diagnostic.xUnit1013.severity = error			# xUnit1013: Public method should be marked as test
 
-# Async
+# Disable unnecessary warnings for tests
+dotnet_diagnostic.CA1062.severity = none				# CA1062: Validate arguments of public methods
 dotnet_diagnostic.CA2007.severity = none				# CA2007: Consider calling ConfigureAwait on the awaited task

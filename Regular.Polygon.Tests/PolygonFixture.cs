@@ -4,26 +4,29 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Regular.Polygon.Tests;
 
-public class PolygonFixture
+public static class PolygonFixture
 {
-	private readonly ServiceProvider _serviceProvider;
+	private static ServiceProvider? s_serviceProvider;
 
-	public PolygonApi Client { get; }
+	public static IReadOnlyList<object[]> Data { get; } = GetData();
 
-	public PolygonFixture()
+	private static IReadOnlyList<object[]> GetData()
 	{
 		var configuration = new ConfigurationBuilder()
 			.AddJsonFile("secrets.json", optional: true)
 			.AddEnvironmentVariables()
 			.Build();
-
-		var services = new ServiceCollection();
-
 		var apiKey = configuration["ApiKey"];
 		Guard.IsNotNullOrWhiteSpace(apiKey);
-		services.AddPolygonApi(o => o.ApiKey = apiKey);
 
-		_serviceProvider = services.BuildServiceProvider();
-		Client = _serviceProvider.GetRequiredService<PolygonApi>();
+		s_serviceProvider = new ServiceCollection()
+			.AddPolygonApi(o => o.ApiKey = apiKey)
+			.BuildServiceProvider();
+
+		return
+		[
+			[s_serviceProvider.GetRequiredService<PolygonApi>()],
+			[new PolygonApi(apiKey)],
+		];
 	}
 }

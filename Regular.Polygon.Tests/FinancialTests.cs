@@ -1,20 +1,12 @@
-﻿using CommunityToolkit.Diagnostics;
-using Regular.Polygon.Ticker;
-using Xunit;
+﻿using Xunit;
 
 namespace Regular.Polygon.Tests;
 
-public class FinancialTests : IClassFixture<PolygonFixture>
+public class FinancialTests
 {
-	private readonly PolygonFixture _fixture;
-
-	public FinancialTests(PolygonFixture fixture)
-	{
-		_fixture = fixture;
-	}
-
-	[Fact]
-	public Task GetFinancials() =>
+	[Theory]
+	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
+	public Task GetFinancials(PolygonApi client) =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetStockFinancials(new() { Ticker = "AAPL", IncludeSources = true, });
+		client.GetStockFinancials(new() { Ticker = "AAPL", IncludeSources = true, });
 }
