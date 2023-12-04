@@ -3,19 +3,13 @@ using Xunit;
 
 namespace Regular.Polygon.Tests;
 
-public class TradeTests : IClassFixture<PolygonFixture>
+public class TradeTests
 {
-	private readonly PolygonFixture _fixture;
-
-	public TradeTests(PolygonFixture fixture)
-	{
-		_fixture = fixture;
-	}
-
-	[Fact]
-	public Task GetAggregatesDate() =>
+	[Theory]
+	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
+	public Task GetAggregatesDate(PolygonApi client) =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetAggregateBars(
+		client.GetAggregateBars(
 			"AAPL",
 			1,
 			Timespan.Day,
@@ -23,10 +17,11 @@ public class TradeTests : IClassFixture<PolygonFixture>
 			new DateOnly(2023, 1, 1),
 			new() { Limit = 5000, });
 
-	[Fact]
-	public Task GetAggregatesOtc() =>
+	[Theory]
+	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
+	public Task GetAggregatesOtc(PolygonApi client) =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetAggregateBars(
+		client.GetAggregateBars(
 			"TCEHY",
 			1,
 			Timespan.Day,
@@ -34,10 +29,11 @@ public class TradeTests : IClassFixture<PolygonFixture>
 			new DateOnly(2023, 1, 1),
 			new() { Limit = 5000, });
 
-	[Fact]
-	public Task GetAggregatesDateTimeOffset() =>
+	[Theory]
+	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
+	public Task GetAggregatesDateTimeOffset(PolygonApi client) =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetAggregateBars(
+		client.GetAggregateBars(
 			"AAPL",
 			1,
 			Timespan.Day,
@@ -45,30 +41,34 @@ public class TradeTests : IClassFixture<PolygonFixture>
 			new DateTimeOffset(2023, 1, 1, 0, 0, 0, TimeSpan.Zero),
 			new() { Limit = 5000, });
 
-	[Fact]
-	public Task GetDailyPrice() =>
+	[Theory]
+	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
+	public Task GetDailyPrice(PolygonApi client) =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetDailyPrice(
+		client.GetDailyPrice(
 			"AAPL",
 			new DateOnly(2023, 1, 3));
 
-	[Fact]
-	public Task GetDailyPriceOtc() =>
+	[Theory]
+	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
+	public Task GetDailyPriceOtc(PolygonApi client) =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetDailyPrice(
+		client.GetDailyPrice(
 			"TCEHY",
 			new DateOnly(2023, 1, 3));
 
-	[Fact]
-	public Task GetPreviousDailyPrice() =>
+	[Theory]
+	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
+	public Task GetPreviousDailyPrice(PolygonApi client) =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetPreviousDailyPrice(
+		client.GetPreviousDailyPrice(
 			"AAPL");
 
-	[Fact]
-	public Task GetTrades() =>
+	[Theory]
+	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
+	public Task GetTrades(PolygonApi client) =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetTradesAll(
+		client.GetTradesAll(
 			"AAPL",
 			new()
 			{

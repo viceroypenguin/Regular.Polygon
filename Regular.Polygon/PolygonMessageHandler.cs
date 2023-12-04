@@ -4,11 +4,16 @@ namespace Regular.Polygon;
 
 internal sealed class PolygonMessageHandler : DelegatingHandler
 {
-	private readonly PolygonOptions _options;
+	private readonly string _apiKey;
 
 	public PolygonMessageHandler(IOptions<PolygonOptions> options)
 	{
-		_options = options.Value;
+		_apiKey = options.Value.ApiKey;
+	}
+
+	public PolygonMessageHandler(string apiKey)
+	{
+		_apiKey = apiKey;
 	}
 
 	protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -18,7 +23,7 @@ internal sealed class PolygonMessageHandler : DelegatingHandler
 
 		if (string.IsNullOrWhiteSpace(paramValues.Get("apiKey")))
 		{
-			paramValues.Add("apiKey", (string?)_options.ApiKey);
+			paramValues.Add("apiKey", _apiKey);
 
 			uriBuilder.Query = paramValues.ToString();
 			request.RequestUri = uriBuilder.Uri;

@@ -2,22 +2,17 @@
 
 namespace Regular.Polygon.Tests;
 
-public class MarketTests : IClassFixture<PolygonFixture>
+public class MarketTests
 {
-	private readonly PolygonFixture _fixture;
-
-	public MarketTests(PolygonFixture fixture)
-	{
-		_fixture = fixture;
-	}
-
-	[Fact]
-	public Task GetMarketStatus() =>
+	[Theory]
+	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
+	public Task GetMarketStatus(PolygonApi client) =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetMarketStatus();
+		client.GetMarketStatus();
 
-	[Fact]
-	public Task GetMarketHolidays() =>
+	[Theory]
+	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
+	public Task GetMarketHolidays(PolygonApi client) =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetMarketHolidays();
+		client.GetMarketHolidays();
 }

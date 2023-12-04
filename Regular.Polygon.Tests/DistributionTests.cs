@@ -2,22 +2,17 @@
 
 namespace Regular.Polygon.Tests;
 
-public class DistributionTests : IClassFixture<PolygonFixture>
+public class DistributionTests
 {
-	private readonly PolygonFixture _fixture;
-
-	public DistributionTests(PolygonFixture fixture)
-	{
-		_fixture = fixture;
-	}
-
-	[Fact]
-	public Task GetStockSplit() =>
+	[Theory]
+	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
+	public Task GetStockSplit(PolygonApi client) =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetStockSplits(new() { Ticker = "AAPL", });
+		client.GetStockSplits(new() { Ticker = "AAPL", });
 
-	[Fact]
-	public Task GetDividend() =>
+	[Theory]
+	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
+	public Task GetDividend(PolygonApi client) =>
 		// all we're looking for is successful api query
-		_fixture.Client.GetDividends(new() { Ticker = "AAPL", });
+		client.GetDividends(new() { Ticker = "AAPL", });
 }
