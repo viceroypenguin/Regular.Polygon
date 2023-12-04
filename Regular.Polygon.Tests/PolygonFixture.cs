@@ -8,7 +8,7 @@ public class PolygonFixture
 {
 	private readonly ServiceProvider _serviceProvider;
 
-	public IPolygonApi Client { get; }
+	public PolygonApi Client { get; }
 
 	public PolygonFixture()
 	{
@@ -21,9 +21,9 @@ public class PolygonFixture
 
 		var apiKey = configuration["ApiKey"];
 		Guard.IsNotNullOrWhiteSpace(apiKey);
-		services.AddPolygonApi(apiKey);
+		services.AddPolygonApi(o => o.ApiKey = apiKey);
 
 		_serviceProvider = services.BuildServiceProvider();
-		Client = _serviceProvider.GetRequiredService<IPolygonApi>();
+		Client = _serviceProvider.GetRequiredService<PolygonApi>();
 	}
 }

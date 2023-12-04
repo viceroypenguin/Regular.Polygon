@@ -2,7 +2,7 @@
 
 namespace Regular.Polygon;
 
-public partial interface IPolygonApi
+public partial class PolygonApi
 {
 	/// <summary>
 	/// Get aggregate bars for a stock over a given date range in custom time window sizes.
@@ -30,7 +30,17 @@ public partial interface IPolygonApi
 		DateTimeOffset from,
 		DateTimeOffset to,
 		AggregateRequest? request = null,
-		CancellationToken cancellationToken = default);
+		CancellationToken cancellationToken = default)
+	{
+		return GetAggregateBars(
+			ticker,
+			multiplier,
+			timespan,
+			from.ToUnixTimeMilliseconds(),
+			to.ToUnixTimeMilliseconds(),
+			request,
+			cancellationToken);
+	}
 
 	/// <summary>
 	/// Get aggregate bars for a stock over a given date range in custom time window sizes.
@@ -51,14 +61,17 @@ public partial interface IPolygonApi
 	/// Read more about how aggregate results are calculated in our article on <a
 	/// href="https://polygon.io/blog/aggs-api-updates/">Aggregate Data API Improvements</a>.
 	/// </remarks>
-	Task<AggregateResponse> GetAggregateBars(
+	public Task<AggregateResponse> GetAggregateBars(
 		string ticker,
 		int multiplier,
 		Timespan timespan,
 		DateOnly from,
 		DateOnly to,
 		AggregateRequest? request = null,
-		CancellationToken cancellationToken = default);
+		CancellationToken cancellationToken = default)
+	{
+		return _refitApi.GetAggregateBars(ticker, multiplier, timespan, from, to, request, cancellationToken);
+	}
 
 	/// <summary>
 	/// Get aggregate bars for a stock over a given date range in custom time window sizes.
@@ -79,14 +92,17 @@ public partial interface IPolygonApi
 	/// Read more about how aggregate results are calculated in our article on <a
 	/// href="https://polygon.io/blog/aggs-api-updates/">Aggregate Data API Improvements</a>.
 	/// </remarks>
-	Task<AggregateResponse> GetAggregateBars(
+	public Task<AggregateResponse> GetAggregateBars(
 		string ticker,
 		int multiplier,
 		Timespan timespan,
 		long from,
 		long to,
 		AggregateRequest? request = null,
-		CancellationToken cancellationToken = default);
+		CancellationToken cancellationToken = default)
+	{
+		return _refitApi.GetAggregateBars(ticker, multiplier, timespan, from, to, request, cancellationToken);
+	}
 
 	/// <summary>
 	/// Get the open, close and afterhours prices of a ticker on a certain date.
@@ -97,11 +113,14 @@ public partial interface IPolygonApi
 	/// this to <see langword="false"/> to get results that are NOT adjusted for splits.</param>
 	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
 	/// <returns>The open, close and afterhours prices of a ticker on a certain date.</returns>
-	Task<DailyPrice> GetDailyPrice(
+	public Task<DailyPrice> GetDailyPrice(
 		string ticker,
 		DateOnly date,
 		bool? adjusted = null,
-		CancellationToken cancellationToken = default);
+		CancellationToken cancellationToken = default)
+	{
+		return _refitApi.GetDailyPrice(ticker, date, adjusted, cancellationToken);
+	}
 
 	/// <summary>
 	/// Get the open, close and afterhours prices of a ticker of the previous trading day.
@@ -111,10 +130,13 @@ public partial interface IPolygonApi
 	/// this to <see langword="false"/> to get results that are NOT adjusted for splits.</param>
 	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
 	/// <returns>The open, close and afterhours prices of a ticker of the previous trading day.</returns>
-	Task<PolygonResponse<IReadOnlyList<AggregateBar>>> GetPreviousDailyPrice(
+	public Task<PolygonResponse<IReadOnlyList<AggregateBar>>> GetPreviousDailyPrice(
 		string ticker,
 		bool? adjusted = null,
-		CancellationToken cancellationToken = default);
+		CancellationToken cancellationToken = default)
+	{
+		return _refitApi.GetPreviousDailyPrice(ticker, adjusted, cancellationToken);
+	}
 
 	/// <summary>
 	/// Get trades for a ticker symbol in a given time range.
@@ -123,10 +145,13 @@ public partial interface IPolygonApi
 	/// <param name="request">Request object to hold additional parameters for the Trades api.</param>
 	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
 	/// <returns>A list of the trades that occurred during the given time range.</returns>
-	Task<PolygonResponse<IReadOnlyList<Trade>>> GetTrades(
+	public Task<PolygonResponse<IReadOnlyList<Trade>>> GetTrades(
 		string ticker,
 		TradesRequest request,
-		CancellationToken cancellationToken = default);
+		CancellationToken cancellationToken = default)
+	{
+		return _refitApi.GetTrades(ticker, request, cancellationToken);
+	}
 
 	/// <summary>
 	/// Get trades for a ticker symbol in a given time range.
@@ -135,8 +160,22 @@ public partial interface IPolygonApi
 	/// <param name="request">Request object to hold additional parameters for the Trades api.</param>
 	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
 	/// <returns>A list of the trades that occurred during the given time range.</returns>
-	Task<IReadOnlyList<Trade>> GetTradesAll(
+	public Task<IReadOnlyList<Trade>> GetTradesAll(
 		string ticker,
 		TradesRequest request,
-		CancellationToken cancellationToken = default);
+		CancellationToken cancellationToken = default)
+	{
+		return GetFullList(
+			GetTrades(ticker, request, cancellationToken),
+			(c, ct) => GetTradesCursor(ticker, c, ct),
+			cancellationToken);
+
+		Task<PolygonResponse<IReadOnlyList<Trade>>> GetTradesCursor(
+			string ticker,
+			string cursor,
+			CancellationToken cancellationToken = default)
+		{
+			return _refitApi.GetTradesCursor(ticker, cursor, cancellationToken);
+		}
+	}
 }

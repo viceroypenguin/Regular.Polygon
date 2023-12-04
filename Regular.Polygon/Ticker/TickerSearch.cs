@@ -27,7 +27,7 @@ public class TickerSearchRequest
 	public string? TickerLessThan { get; set; }
 
 	/// <summary>
-	/// Specify the type of the tickers. Find the supported types via <see cref="IPolygonApi.GetTickerTypes(TickerTypeRequest?,CancellationToken)"/>
+	/// Specify the type of the tickers. Find the supported types via <see cref="PolygonApi.GetTickerTypes(TickerTypeRequest?,CancellationToken)"/>
 	/// </summary>
 	[AliasAs("type")]
 	public string? TickerType { get; set; }

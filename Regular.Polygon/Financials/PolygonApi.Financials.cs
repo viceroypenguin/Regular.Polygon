@@ -2,7 +2,7 @@
 
 namespace Regular.Polygon;
 
-public partial interface IPolygonApi
+public partial class PolygonApi
 {
 	/// <summary>
 	/// Get historical financial data for a stock ticker. The financials data is extracted from XBRL from company SEC
@@ -13,5 +13,6 @@ public partial interface IPolygonApi
 	/// <param name="cancellationToken">Cancellation token that can be used to cancel the operation.</param>
 	/// <returns>A list of company SEC filings.</returns>
 	/// <remarks>This API is experimental</remarks>
-	Task<PolygonResponse<IReadOnlyList<FinancialsFiling>>> GetStockFinancials(FinancialsRequest request, CancellationToken cancellationToken = default);
+	public Task<PolygonResponse<IReadOnlyList<FinancialsFiling>>> GetStockFinancials(FinancialsRequest request, CancellationToken cancellationToken = default) =>
+		_refitApi.GetStockFinancials(request, cancellationToken);
 }
