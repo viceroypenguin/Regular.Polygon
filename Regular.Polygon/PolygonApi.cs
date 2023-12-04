@@ -98,7 +98,4 @@ public sealed partial class PolygonApi
 	};
 }
 
-internal partial interface IPolygonApiRefit
-{
-
-}
+internal partial interface IPolygonApiRefit;

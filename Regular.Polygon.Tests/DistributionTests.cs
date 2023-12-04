@@ -4,7 +4,6 @@ namespace Regular.Polygon.Tests;
 
 public class DistributionTests
 {
-
 	[Theory]
 	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
 	public Task GetStockSplit(PolygonApi client) =>
