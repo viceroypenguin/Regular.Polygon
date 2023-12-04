@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Diagnostics;
+﻿using System.Diagnostics.CodeAnalysis;
+using CommunityToolkit.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
 
@@ -7,6 +8,7 @@ namespace Regular.Polygon;
 /// <summary>
 /// Holding class for extension methods.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public static class PolygonServiceCollectionExtensions
 {
 	/// <summary>
