@@ -34,4 +34,18 @@ public partial class PolygonApi
 
 		return _stockSocketManager.GetEventsForKey<LiveAggregateBar>($"A.{symbol}", 4);
 	}
+
+	/// <summary>
+	/// Stream real-time trades for a given stock ticker symbol.
+	/// </summary>
+	/// <param name="symbol">The stock ticker symbol for which to get live trades.</param>
+	/// <returns>An async stream of trades for the stock ticker symbol.</returns>
+	public IAsyncEnumerable<LiveTrade> GetStockLiveTrades(string symbol)
+	{
+		if (_stockSocketManager == null)
+			// don't care about original value, only care that _a_ `PolygonSocketManager` got set.
+			_ = Interlocked.CompareExchange(ref _stockSocketManager, new(_dataStatus, "stocks", _apiKey), null);
+
+		return _stockSocketManager.GetEventsForKey<LiveTrade>($"T.{symbol}", 4);
+	}
 }
