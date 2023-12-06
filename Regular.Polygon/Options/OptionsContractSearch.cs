@@ -30,7 +30,7 @@ public sealed class OptionsContractSearch
 	/// <summary>
 	/// Specify the type of option contract types. Valid options are "call" or "put".
 	/// </summary>
-	[AliasAs("type")]
+	[AliasAs("contract_type")]
 	public string? ContractType { get; set; }
 
 	/// <summary>
