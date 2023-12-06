@@ -127,7 +127,7 @@ internal sealed partial class PolygonSocketManager : IAsyncDisposable
 				_ => ThrowHelper.ThrowInvalidOperationException<string>("invalid server type."),
 			};
 
-			await socket.ConnectAsync(new Uri($"{url}/{_url}"), CancellationToken.None).ConfigureAwait(false);
+			await socket.ConnectAsync(new Uri($"{url}{_url}"), CancellationToken.None).ConfigureAwait(false);
 
 			var messages = await ReceiveMessages(socket, CancellationToken.None).ConfigureAwait(false);
 			var statuses = messages.Deserialize<List<StatusMessage>>();
