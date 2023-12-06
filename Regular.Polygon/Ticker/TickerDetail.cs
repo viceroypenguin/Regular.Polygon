@@ -159,4 +159,3 @@ public record TickerDetail(
 		[property: JsonPropertyName("logo_url")]
 		string LogoUrl);
 }
-
