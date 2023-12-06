@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace Regular.Polygon.Options;
@@ -30,6 +31,7 @@ public enum ExerciseStyle
 /// <param name="PrimaryExchange">The MIC code of the primary exchange that this contract is listed on.</param>
 /// <param name="SharesPerContract">The number of shares per contract for this contract.</param>
 /// <param name="StrikePrice">The strike price of the option contract.</param>
+[ExcludeFromCodeCoverage]
 public sealed record OptionsContractDetail(
 	[property: JsonPropertyName("ticker")]
 	string Ticker,
@@ -74,6 +76,7 @@ public sealed record OptionsContractDetail(
 /// <param name="Underlying">The name of the additional underlying asset.</param>
 /// <param name="Amount">The number of shares per contract of the additional underlying, or the cash-in-lieu amount of
 /// the currency.</param>
+[ExcludeFromCodeCoverage]
 public sealed record AdditionalUnderlying(
 	[property: JsonPropertyName("type")]
 	string Type,

@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 using Refit;
 
 namespace Regular.Polygon.Distribution;
@@ -6,6 +7,7 @@ namespace Regular.Polygon.Distribution;
 /// <summary>
 /// Request class to hold parameters for the Stock Split api
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class StockSplitRequest
 {
 	/// <summary>
@@ -79,6 +81,7 @@ public class StockSplitRequest
 /// name="SplitFrom"/> would be 1.</param>
 /// <param name="SplitTo">The first number in the split ratio. For example: In a 2-for-1 split, <paramref
 /// name="SplitTo"/> would be 2.</param>
+[ExcludeFromCodeCoverage]
 public record StockSplit(
 	string Ticker,
 	[property: JsonPropertyName("execution_date")]

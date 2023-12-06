@@ -1,4 +1,6 @@
-﻿namespace Regular.Polygon.Market;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Regular.Polygon.Market;
 
 /// <summary>
 /// Current trading status of the exchanges and financial markets
@@ -9,6 +11,7 @@
 /// <param name="AfterHours">Whether or not the market is in post-market hours.</param>
 /// <param name="Currencies">A collection of currency markets and their current status.</param>
 /// <param name="Exchanges">A collection of security markets and their current status.</param>
+[ExcludeFromCodeCoverage]
 public record MarketStatus(
 	string Market,
 	DateTimeOffset ServerTime,

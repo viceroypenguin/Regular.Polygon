@@ -1,10 +1,12 @@
-﻿using Refit;
+﻿using System.Diagnostics.CodeAnalysis;
+using Refit;
 
 namespace Regular.Polygon.Options;
 
 /// <summary>
 /// Request class to hold parameters for the Options Contract Search api
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class OptionsContractSearch
 {
 	/// <summary>

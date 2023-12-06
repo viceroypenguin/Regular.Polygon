@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace Regular.Polygon.Trades;
 
@@ -13,6 +14,7 @@ namespace Regular.Polygon.Trades;
 /// <param name="Low">The lowest price for the symbol in the given time period.</param>
 /// <param name="Close">The highest price for the symbol in the given time period.</param>
 /// <param name="Volume">The volume weighted average price.</param>
+[ExcludeFromCodeCoverage]
 public record DailyPrice(
 	string Status,
 	string Symbol,

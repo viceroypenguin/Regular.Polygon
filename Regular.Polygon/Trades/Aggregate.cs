@@ -25,6 +25,7 @@ public enum Timespan
 /// <summary>
 /// Request class to hold additional parameters for the Aggregate Bars api
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class AggregateRequest
 {
 	/// <summary>
@@ -57,6 +58,7 @@ public class AggregateRequest
 /// <summary>
 /// A response object containing request and status information for aggregate queries.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public record AggregateResponse : PolygonResponse<IReadOnlyList<AggregateBar>>
 {
 	/// <summary>
@@ -90,6 +92,7 @@ public record AggregateResponse : PolygonResponse<IReadOnlyList<AggregateBar>>
 /// <param name="Low">The lowest price for the symbol in the given time period.</param>
 /// <param name="Close">The highest price for the symbol in the given time period.</param>
 /// <param name="Volume">The volume weighted average price.</param>
+[ExcludeFromCodeCoverage]
 public record AggregateBar(
 	[property: JsonPropertyName("t"), JsonConverter(typeof(UnixMillisecondDateTimeOffsetConverter))]
 	DateTimeOffset Timestamp,

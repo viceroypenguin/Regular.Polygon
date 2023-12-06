@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace Regular.Polygon.Ticker;
 
@@ -10,6 +11,7 @@ namespace Regular.Polygon.Ticker;
 /// <param name="Market">The market type of the asset.</param>
 /// <param name="Locale">The locale of the asset.</param>
 /// <param name="Active">Whether or not the asset is actively traded. False means the asset has been delisted.</param>
+[ExcludeFromCodeCoverage]
 public record TickerDetail(
 	string Ticker,
 	string Name,
