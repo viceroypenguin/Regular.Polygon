@@ -175,7 +175,7 @@ public class DividendRequest
 /// <param name="Frequency">The number of times per year the dividend is paid out. Possible values are 0 (one-time), 1
 /// (annually), 2 (bi-annually), 4 (quarterly), and 12 (monthly).</param>
 [ExcludeFromCodeCoverage]
-public record Dividend(
+public sealed record Dividend(
 	string Ticker,
 	[property: JsonPropertyName("dividend_type")]
 	DividendType DividendType,

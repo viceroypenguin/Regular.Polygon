@@ -60,7 +60,7 @@ public class TickerTypeRequest
 /// <param name="Code">A code used by Polygon.io to refer to this ticker type.</param>
 /// <param name="Description">A short description of this ticker type.</param>
 [ExcludeFromCodeCoverage]
-public record TickerType(
+public sealed record TickerType(
 	[property: JsonPropertyName("asset_class")]
 	AssetClass AssetClass,
 	Locale Locale,

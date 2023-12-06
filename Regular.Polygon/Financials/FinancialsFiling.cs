@@ -14,7 +14,7 @@ namespace Regular.Polygon.Financials;
 /// <param name="Timeframe">The timeframe of the report (quarterly, annual or ttm).</param>
 /// <param name="Financials">The financial reports contained in the filing.</param>
 [ExcludeFromCodeCoverage]
-public record FinancialsFiling(
+public sealed record FinancialsFiling(
 	string Cik,
 	[property: JsonPropertyName("company_name")]
 	string CompanyName,
@@ -81,7 +81,7 @@ public record FinancialsFiling(
 /// The financial reports contained in a filing
 /// </summary>
 [ExcludeFromCodeCoverage]
-public record FinancialReports
+public sealed record FinancialReports
 {
 	/// <summary>
 	/// Balance sheet
@@ -149,7 +149,7 @@ public enum FinancialReportDataPointSource
 /// <param name="Value">The value of the financial data point.</param>
 /// <param name="Order">An indicator of what order within the statement that you would find this data point.</param>
 [ExcludeFromCodeCoverage]
-public record FinancialReportDataPoint(
+public sealed record FinancialReportDataPoint(
 	string Label,
 	string Unit,
 	decimal Value,

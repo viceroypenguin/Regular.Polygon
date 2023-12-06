@@ -59,7 +59,7 @@ public class AggregateRequest
 /// A response object containing request and status information for aggregate queries.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public record AggregateResponse : PolygonResponse<IReadOnlyList<AggregateBar>>
+public sealed record AggregateResponse : PolygonResponse<IReadOnlyList<AggregateBar>>
 {
 	/// <summary>
 	/// Whether or not this response was adjusted for splits.
@@ -79,7 +79,6 @@ public record AggregateResponse : PolygonResponse<IReadOnlyList<AggregateBar>>
 	/// <summary>
 	/// The total number of results for this request.
 	/// </summary>
-	[ExcludeFromCodeCoverage] // used by STJ to set Count, doesn't need to be covered
 	private int ResultsCount { set => Count = value; }
 }
 
@@ -93,7 +92,7 @@ public record AggregateResponse : PolygonResponse<IReadOnlyList<AggregateBar>>
 /// <param name="Close">The highest price for the symbol in the given time period.</param>
 /// <param name="Volume">The volume weighted average price.</param>
 [ExcludeFromCodeCoverage]
-public record AggregateBar(
+public sealed record AggregateBar(
 	[property: JsonPropertyName("t"), JsonConverter(typeof(UnixMillisecondDateTimeOffsetConverter))]
 	DateTimeOffset Timestamp,
 	[property: JsonPropertyName("o")]

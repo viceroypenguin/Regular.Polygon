@@ -108,7 +108,7 @@ public class TickerSearchRequest
 /// <param name="Market">The market type of the asset.</param>
 /// <param name="Locale">The locale of the asset.</param>
 [ExcludeFromCodeCoverage]
-public record TickerSearchResult(
+public sealed record TickerSearchResult(
 	string Ticker,
 	string Name,
 	AssetClass Market,

@@ -15,7 +15,7 @@ namespace Regular.Polygon.Trades;
 /// <param name="Close">The highest price for the symbol in the given time period.</param>
 /// <param name="Volume">The volume weighted average price.</param>
 [ExcludeFromCodeCoverage]
-public record DailyPrice(
+public sealed record DailyPrice(
 	string Status,
 	string Symbol,
 	DateOnly From,

@@ -12,7 +12,7 @@ namespace Regular.Polygon.Market;
 /// <param name="Open">The market open time on the holiday (if it's not closed).</param>
 /// <param name="Close">The market close time on the holiday (if it's not closed).</param>
 [ExcludeFromCodeCoverage]
-public record MarketHoliday(
+public sealed record MarketHoliday(
 	DateOnly Date,
 	string Exchange,
 	string Name,

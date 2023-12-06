@@ -82,7 +82,7 @@ public class StockSplitRequest
 /// <param name="SplitTo">The first number in the split ratio. For example: In a 2-for-1 split, <paramref
 /// name="SplitTo"/> would be 2.</param>
 [ExcludeFromCodeCoverage]
-public record StockSplit(
+public sealed record StockSplit(
 	string Ticker,
 	[property: JsonPropertyName("execution_date")]
 	DateOnly ExecutionDate,

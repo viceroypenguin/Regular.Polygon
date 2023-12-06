@@ -12,7 +12,7 @@ namespace Regular.Polygon.Market;
 /// <param name="Currencies">A collection of currency markets and their current status.</param>
 /// <param name="Exchanges">A collection of security markets and their current status.</param>
 [ExcludeFromCodeCoverage]
-public record MarketStatus(
+public sealed record MarketStatus(
 	string Market,
 	DateTimeOffset ServerTime,
 	bool EarlyHours,

@@ -60,7 +60,7 @@ public class TradesRequest
 /// increasing and unique per ticker symbol, but will not always be sequential (e.g., 1, 2, 6, 9, 10, 11). Values reset
 /// after each trading session/day.</param>
 [ExcludeFromCodeCoverage]
-public record Trade(
+public sealed record Trade(
 	string Id,
 	int Exchange,
 	decimal Size,
