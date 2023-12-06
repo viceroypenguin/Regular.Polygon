@@ -21,13 +21,17 @@ public static class PolygonFixture
 		Guard.IsNotNullOrWhiteSpace(apiKey);
 
 		s_serviceProvider = new ServiceCollection()
-			.AddPolygonApi(o => o.ApiKey = apiKey)
+			.AddPolygonApi(o =>
+			{
+				o.ApiKey = apiKey;
+				o.DataStatus = PolygonDataStatus.Delayed;
+			})
 			.BuildServiceProvider();
 
 		return
 		[
 			[s_serviceProvider.GetRequiredService<PolygonApi>()],
-			[new PolygonApi(apiKey)],
+			[new PolygonApi(apiKey, PolygonDataStatus.Delayed)],
 		];
 	}
 }
