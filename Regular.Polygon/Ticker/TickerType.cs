@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Refit;
 
@@ -35,7 +36,8 @@ public enum Locale
 /// <summary>
 /// Request class to hold parameters for the Ticker Types api
 /// </summary>
-public class TickerTypeRequest
+[ExcludeFromCodeCoverage]
+public sealed class TickerTypeRequest
 {
 	/// <summary>
 	/// Filter by asset class.
@@ -57,7 +59,8 @@ public class TickerTypeRequest
 /// <param name="Locale">An identifier for a geographical location.</param>
 /// <param name="Code">A code used by Polygon.io to refer to this ticker type.</param>
 /// <param name="Description">A short description of this ticker type.</param>
-public record TickerType(
+[ExcludeFromCodeCoverage]
+public sealed record TickerType(
 	[property: JsonPropertyName("asset_class")]
 	AssetClass AssetClass,
 	Locale Locale,

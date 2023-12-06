@@ -7,7 +7,8 @@ namespace Regular.Polygon.Trades;
 /// <summary>
 /// Request class to hold parameters for the Trades api
 /// </summary>
-public class TradesRequest
+[ExcludeFromCodeCoverage]
+public sealed class TradesRequest
 {
 	/// <summary>
 	/// Specify a timestamp. 
@@ -58,7 +59,8 @@ public class TradesRequest
 /// <param name="SequenceNumber">The sequence number represents the sequence in which trade events happened. These are
 /// increasing and unique per ticker symbol, but will not always be sequential (e.g., 1, 2, 6, 9, 10, 11). Values reset
 /// after each trading session/day.</param>
-public record Trade(
+[ExcludeFromCodeCoverage]
+public sealed record Trade(
 	string Id,
 	int Exchange,
 	decimal Size,

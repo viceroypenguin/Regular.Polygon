@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Refit;
 
@@ -38,7 +39,8 @@ public enum DividendType
 /// <summary>
 /// Request class to hold parameters for the Dividend api
 /// </summary>
-public class DividendRequest
+[ExcludeFromCodeCoverage]
+public sealed class DividendRequest
 {
 	/// <summary>
 	/// Specify a ticker symbol. 
@@ -172,7 +174,8 @@ public class DividendRequest
 /// exchange.</param>
 /// <param name="Frequency">The number of times per year the dividend is paid out. Possible values are 0 (one-time), 1
 /// (annually), 2 (bi-annually), 4 (quarterly), and 12 (monthly).</param>
-public record Dividend(
+[ExcludeFromCodeCoverage]
+public sealed record Dividend(
 	string Ticker,
 	[property: JsonPropertyName("dividend_type")]
 	DividendType DividendType,

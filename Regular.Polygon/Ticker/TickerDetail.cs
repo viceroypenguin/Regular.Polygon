@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace Regular.Polygon.Ticker;
 
@@ -10,7 +11,8 @@ namespace Regular.Polygon.Ticker;
 /// <param name="Market">The market type of the asset.</param>
 /// <param name="Locale">The locale of the asset.</param>
 /// <param name="Active">Whether or not the asset is actively traded. False means the asset has been delisted.</param>
-public record TickerDetail(
+[ExcludeFromCodeCoverage]
+public sealed record TickerDetail(
 	string Ticker,
 	string Name,
 	AssetClass Market,
@@ -138,7 +140,7 @@ public record TickerDetail(
 	/// <param name="City">The city of the company's headquarters address.</param>
 	/// <param name="PostalCode">The postal code of the company's headquarters address.</param>
 	/// <param name="State">The state of the company's headquarters address.</param>
-	public record AddressObject(
+	public sealed record AddressObject(
 		[property: JsonPropertyName("address1")]
 		string Address1,
 		[property: JsonPropertyName("city")]
@@ -153,10 +155,9 @@ public record TickerDetail(
 	/// </summary>
 	/// <param name="IconUrl">A link to this ticker's company's icon.</param>
 	/// <param name="LogoUrl">A link to this ticker's company's logo.</param>
-	public record BrandingObject(
+	public sealed record BrandingObject(
 		[property: JsonPropertyName("icon_url")]
 		string IconUrl,
 		[property: JsonPropertyName("logo_url")]
 		string LogoUrl);
 }
-

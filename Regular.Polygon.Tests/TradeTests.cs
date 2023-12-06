@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Regular.Polygon.Tests;
 
-public class TradeTests
+public sealed class TradeTests
 {
 	[Theory]
 	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]

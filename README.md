@@ -35,7 +35,7 @@ Receive an instance of the `IPolygonApi` interface from the application services
 and make API calls via this instance.
 
 ```c#
-public class StockService
+public sealed class StockService
 {
 	private readonly IPolygonApi _polygonApi;
 

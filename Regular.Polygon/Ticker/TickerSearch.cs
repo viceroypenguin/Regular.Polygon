@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 using Refit;
 
 namespace Regular.Polygon.Ticker;
@@ -6,7 +7,8 @@ namespace Regular.Polygon.Ticker;
 /// <summary>
 /// Request class to hold parameters for the Ticker Search api
 /// </summary>
-public class TickerSearchRequest
+[ExcludeFromCodeCoverage]
+public sealed class TickerSearchRequest
 {
 	/// <summary>
 	/// Specify a ticker symbol. 
@@ -105,7 +107,8 @@ public class TickerSearchRequest
 /// <param name="Name">The exchange symbol that this item is traded under.</param>
 /// <param name="Market">The market type of the asset.</param>
 /// <param name="Locale">The locale of the asset.</param>
-public record TickerSearchResult(
+[ExcludeFromCodeCoverage]
+public sealed record TickerSearchResult(
 	string Ticker,
 	string Name,
 	AssetClass Market,

@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 
 namespace Regular.Polygon.Financials;
@@ -12,7 +13,8 @@ namespace Regular.Polygon.Financials;
 /// <param name="FiscalPeriod">Fiscal period of the report according to the company (Q1, Q2, Q3, Q4, or FY).</param>
 /// <param name="Timeframe">The timeframe of the report (quarterly, annual or ttm).</param>
 /// <param name="Financials">The financial reports contained in the filing.</param>
-public record FinancialsFiling(
+[ExcludeFromCodeCoverage]
+public sealed record FinancialsFiling(
 	string Cik,
 	[property: JsonPropertyName("company_name")]
 	string CompanyName,
@@ -78,7 +80,8 @@ public record FinancialsFiling(
 /// <summary>
 /// The financial reports contained in a filing
 /// </summary>
-public record FinancialReports
+[ExcludeFromCodeCoverage]
+public sealed record FinancialReports
 {
 	/// <summary>
 	/// Balance sheet
@@ -145,7 +148,8 @@ public enum FinancialReportDataPointSource
 /// <param name="Unit">The unit of the financial data point.</param>
 /// <param name="Value">The value of the financial data point.</param>
 /// <param name="Order">An indicator of what order within the statement that you would find this data point.</param>
-public record FinancialReportDataPoint(
+[ExcludeFromCodeCoverage]
+public sealed record FinancialReportDataPoint(
 	string Label,
 	string Unit,
 	decimal Value,

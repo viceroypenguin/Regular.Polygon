@@ -1,11 +1,13 @@
-﻿using Refit;
+﻿using System.Diagnostics.CodeAnalysis;
+using Refit;
 
 namespace Regular.Polygon.Options;
 
 /// <summary>
 /// Request class to hold parameters for the Options Contract Search api
 /// </summary>
-public class OptionsContractSearch
+[ExcludeFromCodeCoverage]
+public sealed class OptionsContractSearch
 {
 	/// <summary>
 	/// Specify a ticker symbol. 

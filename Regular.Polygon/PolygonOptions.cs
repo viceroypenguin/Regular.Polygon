@@ -5,7 +5,7 @@ namespace Regular.Polygon;
 /// <summary>
 /// Implements the IOptions pattern for configuring <c>Regular.Polygon</c>.
 /// </summary>
-public class PolygonOptions
+public sealed class PolygonOptions
 {
 	/// <summary>
 	/// The API key provided by polygon.io for access to their APIs.

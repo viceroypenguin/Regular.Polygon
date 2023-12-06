@@ -1,4 +1,6 @@
-﻿namespace Regular.Polygon.Market;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Regular.Polygon.Market;
 
 /// <summary>
 /// An upcoming market holiday.
@@ -9,7 +11,8 @@
 /// <param name="Status">The status of the market on the holiday.</param>
 /// <param name="Open">The market open time on the holiday (if it's not closed).</param>
 /// <param name="Close">The market close time on the holiday (if it's not closed).</param>
-public record MarketHoliday(
+[ExcludeFromCodeCoverage]
+public sealed record MarketHoliday(
 	DateOnly Date,
 	string Exchange,
 	string Name,

@@ -3,6 +3,8 @@ using System.Text.Json.Serialization;
 
 namespace Regular.Polygon;
 
+#pragma warning disable SA1402
+
 /// <inheritdoc/>
 [ExcludeFromCodeCoverage]
 internal sealed class UnixMillisecondDateTimeOffsetConverter : JsonConverter<DateTimeOffset>
@@ -25,7 +27,7 @@ internal sealed class UnixNanosecondDateTimeOffsetConverter : JsonConverter<Date
 	private static DateTimeOffset FromUnixTimeNanoseconds(long nanoSeconds)
 	{
 		var dto = DateTimeOffset.FromUnixTimeMilliseconds(nanoSeconds / 1_000_000);
-		dto = dto.AddTicks(nanoSeconds % 1_000_000 / 100);
+		dto = dto.AddTicks((nanoSeconds % 1_000_000) / 100);
 		return dto;
 	}
 
