@@ -8,7 +8,7 @@ namespace Regular.Polygon.Ticker;
 /// Request class to hold parameters for the Ticker Search api
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class TickerSearchRequest
+public sealed class TickerSearchRequest
 {
 	/// <summary>
 	/// Specify a ticker symbol. 

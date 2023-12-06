@@ -7,7 +7,7 @@ namespace Regular.Polygon.Options;
 /// Request class to hold parameters for the Options Contract Search api
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class OptionsContractSearch
+public sealed class OptionsContractSearch
 {
 	/// <summary>
 	/// Specify a ticker symbol. 

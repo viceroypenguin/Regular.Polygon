@@ -37,7 +37,7 @@ public enum Locale
 /// Request class to hold parameters for the Ticker Types api
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class TickerTypeRequest
+public sealed class TickerTypeRequest
 {
 	/// <summary>
 	/// Filter by asset class.

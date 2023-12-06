@@ -5,7 +5,7 @@ namespace Regular.Polygon.Financials;
 /// <summary>
 /// Request class to hold parameters for the Stock Financials API
 /// </summary>
-public class FinancialsRequest
+public sealed class FinancialsRequest
 {
 	/// <summary>
 	/// Query by company ticker.

@@ -8,7 +8,7 @@ namespace Regular.Polygon.Trades;
 /// Request class to hold parameters for the Trades api
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class TradesRequest
+public sealed class TradesRequest
 {
 	/// <summary>
 	/// Specify a timestamp. 

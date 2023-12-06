@@ -40,7 +40,7 @@ public enum DividendType
 /// Request class to hold parameters for the Dividend api
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class DividendRequest
+public sealed class DividendRequest
 {
 	/// <summary>
 	/// Specify a ticker symbol. 

@@ -4,7 +4,7 @@ using Xunit;
 
 namespace Regular.Polygon.Tests;
 
-public class TickerTests
+public sealed class TickerTests
 {
 	[Theory]
 	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]

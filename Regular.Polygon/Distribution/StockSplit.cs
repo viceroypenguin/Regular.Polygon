@@ -8,7 +8,7 @@ namespace Regular.Polygon.Distribution;
 /// Request class to hold parameters for the Stock Split api
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class StockSplitRequest
+public sealed class StockSplitRequest
 {
 	/// <summary>
 	/// Specify a ticker symbol. 

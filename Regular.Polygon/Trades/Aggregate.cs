@@ -26,7 +26,7 @@ public enum Timespan
 /// Request class to hold additional parameters for the Aggregate Bars api
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class AggregateRequest
+public sealed class AggregateRequest
 {
 	/// <summary>
 	/// Whether or not the results are adjusted for splits.

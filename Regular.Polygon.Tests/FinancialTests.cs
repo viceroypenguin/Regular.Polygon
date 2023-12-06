@@ -2,7 +2,7 @@
 
 namespace Regular.Polygon.Tests;
 
-public class FinancialTests
+public sealed class FinancialTests
 {
 	[Theory]
 	[MemberData(nameof(PolygonFixture.Data), MemberType = typeof(PolygonFixture))]
