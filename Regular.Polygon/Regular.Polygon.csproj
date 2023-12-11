@@ -58,10 +58,10 @@
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-	<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
-	<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
-	<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
-	<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+	<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+	<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+	<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+	<PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
 	<PackageReference Include="Refit" Version="6.3.2" />
 	<PackageReference Include="Refit.HttpClientFactory" Version="6.3.2" />
 	<PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
