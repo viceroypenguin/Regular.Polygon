@@ -72,7 +72,7 @@
 	<PackageReference Include="CommunityToolkit.Diagnostics" Version="8.2.2" />
 	<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
 	<PackageReference Include="MinVer" Version="4.3.0" PrivateAssets="All" />
-	<PackageReference Include="PolySharp" Version="1.14.0" PrivateAssets="All" />
+	<PackageReference Include="PolySharp" Version="1.14.1" PrivateAssets="All" />
   </ItemGroup>
 
   <PropertyGroup Label="MinVer">
