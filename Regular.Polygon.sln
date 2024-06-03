@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
@@ -10,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".root", ".root", "{D5051E17
 		.gitignore = .gitignore
 		.github\dependabot.yml = .github\dependabot.yml
 		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
@@ -18,9 +18,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{C2C38B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F440528D-75EE-4A28-8DBC-004F6F162C52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Regular.Polygon", "Regular.Polygon\Regular.Polygon.csproj", "{FC1BE7CD-CB0B-4E19-9CA5-22B7F496B83B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Regular.Polygon", "Regular.Polygon\Regular.Polygon.csproj", "{FC1BE7CD-CB0B-4E19-9CA5-22B7F496B83B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Regular.Polygon.Tests", "Regular.Polygon.Tests\Regular.Polygon.Tests.csproj", "{A2186AA5-06D2-4B86-83D3-DCC31B9E5997}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Regular.Polygon.Tests", "Regular.Polygon.Tests\Regular.Polygon.Tests.csproj", "{A2186AA5-06D2-4B86-83D3-DCC31B9E5997}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{396DC7AF-8D17-4118-866E-7BC36E78ED0B}"
 	ProjectSection(SolutionItems) = preProject
